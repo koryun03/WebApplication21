@@ -7,6 +7,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using WebApp21.MessageBus;
 using WebApp21.Services.ShoppingCartAPI;
+using WebApp21.Services.ShoppingCartAPI.Consumers;
 using WebApp21.Services.ShoppingCartAPI.Data;
 using WebApp21.Services.ShoppingCartAPI.Service;
 using WebApp21.Services.ShoppingCartAPI.Service.IService;
@@ -63,6 +64,8 @@ builder.Services.AddSwaggerGen(option =>
 var host = builder.Configuration.GetConnectionString("RabbitMQ");
 builder.Services.AddMassTransit(x =>
 {
+    x.AddConsumer<CartAfterOrderConsumer>();
+
     x.UsingRabbitMq((context, cfg) =>
     {
         cfg.Host(host, h =>

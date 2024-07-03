@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
+using WebApp21.MessageBus;
 using WebApp21.Services.OrderAPI;
 using WebApp21.Services.OrderAPI.Data;
 using WebApp21.Services.OrderAPI.Service;
@@ -20,10 +21,11 @@ builder.Services.AddDbContext<ApplicationContext>(p => p.UseSqlServer(builder.Co
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<BackendApiAuthenticationHttpClientHandler>();
-//builder.Services.AddScoped<IMessageBus, MessageBus>();
+builder.Services.AddScoped<IMessageBus, MessageBus>();
 builder.Services.AddHttpClient("Product", u => u.BaseAddress =
 new Uri(builder.Configuration["ServiceUrls:ProductAPI"])).AddHttpMessageHandler<BackendApiAuthenticationHttpClientHandler>();
 builder.Services.AddControllers();
@@ -54,21 +56,21 @@ builder.Services.AddSwaggerGen(option =>
     });
 });
 
-//var host = builder.Configuration.GetConnectionString("RabbitMQ");
-//builder.Services.AddMassTransit(x =>
-//{
-//    x.UsingRabbitMq((context, cfg) =>
-//    {
-//        cfg.Host(host, h =>
-//        {
-//            h.Username("guest");
-//            h.Password("guest");
-//        });
+var host = builder.Configuration.GetConnectionString("RabbitMQ");
+builder.Services.AddMassTransit(x =>
+{
+    x.UsingRabbitMq((context, cfg) =>
+    {
+        cfg.Host(host, h =>
+        {
+            h.Username("guest");
+            h.Password("guest");
+        });
 
-//        cfg.ConfigureEndpoints(context);
-//    });
+        cfg.ConfigureEndpoints(context);
+    });
 
-//});
+});
 
 
 var settingsSection = builder.Configuration.GetSection("ApiSettings");

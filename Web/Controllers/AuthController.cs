@@ -65,6 +65,8 @@ namespace Web.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegistrationRequestDto obj)
         {
+            obj.Role = SD.RoleCustomer;
+
             ResponseDto result = await _authService.RegisterAsync(obj);
             ResponseDto assignRole;
 

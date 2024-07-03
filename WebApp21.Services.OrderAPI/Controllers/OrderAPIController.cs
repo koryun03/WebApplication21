@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Stripe;
 using Stripe.Checkout; //
+using WebApp21.MessageBus;
+using WebApp21.MessageBus.Common;
 using WebApp21.Services.OrderAPI.Data;
 using WebApp21.Services.OrderAPI.Models;
 using WebApp21.Services.OrderAPI.Models.Dto;
@@ -20,15 +22,15 @@ namespace WebApp21.Services.OrderAPI.Controllers
         private IMapper _mapper;
         private readonly ApplicationContext _db;
         private IProductService _productService;
-        // private readonly IMessageBus _messageBus;
+        private readonly IMessageBus _messageBus;
         private readonly IConfiguration _configuration;
         public OrderAPIController(ApplicationContext db,
-            IProductService productService, IMapper mapper, IConfiguration configuration
-            /*, IMessageBus messageBus*/)
+            IProductService productService, IMapper mapper,
+            IConfiguration configuration, IMessageBus messageBus)
         {
             _db = db;
-            //  _messageBus = messageBus;
-            this._response = new ResponseDto();
+            _messageBus = messageBus;
+            _response = new ResponseDto();
             _productService = productService;
             _mapper = mapper;
             _configuration = configuration;
@@ -94,6 +96,13 @@ namespace WebApp21.Services.OrderAPI.Controllers
 
                 orderHeaderDto.OrderHeaderId = orderCreated.OrderHeaderId;
                 _response.Result = orderHeaderDto;
+
+                //var shoppingCart = _mapper.Map<ShoppingCartMessaging>(cartDto);
+                //// _messageBus.PublishMessage(cartDto);
+                //await _messageBus.PublishMessage(shoppingCart);
+
+                var cart = new CartAfterOrderMessaging { CartHeaderId = cartDto.CartHeader.CartHeaderId };
+                await _messageBus.PublishMessage(cart);
             }
             catch (Exception ex)
             {
@@ -196,8 +205,8 @@ namespace WebApp21.Services.OrderAPI.Controllers
                         RewardsActivity = Convert.ToInt32(orderHeader.OrderTotal),
                         UserId = orderHeader.UserId
                     };
-                    // string topicName = _configuration.GetValue<string>("TopicAndQueueNames:OrderCreatedTopic");
-                    //  await _messageBus.PublishMessage(rewardsDto, topicName);
+                    //string topicname = _configuration.getvalue<string>("topicandqueuenames:ordercreatedtopic");
+                    //await _messageBus.PublishMessage(rewardsdto, topicname);
                     _response.Result = _mapper.Map<OrderHeaderDto>(orderHeader);
                 }
 

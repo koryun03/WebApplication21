@@ -22,6 +22,13 @@ namespace WebApp21.Services.OrderAPI
                 config.CreateMap<OrderHeader, OrderHeaderDto>().ReverseMap();
                 config.CreateMap<OrderDetailsDto, OrderDetails>().ReverseMap();
 
+
+                ////messaging
+                //config.CreateMap<CartDto, ShoppingCartMessaging>().ReverseMap();
+                //config.CreateMap<CartHeaderDto, ShoppingCartHeaderMessaging>().ReverseMap();
+                //config.CreateMap<CartDetailsDto, ShoppingCartDetailsMessaging>().ReverseMap();
+                //config.CreateMap<ProductDto, ProductMessaging>().ReverseMap();
+
             });
             return mappingConfig;
         }
