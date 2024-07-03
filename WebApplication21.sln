@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp21.MessageBus", "Mess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp21.Services.EmailAPI", "Services.EmailAPI\WebApp21.Services.EmailAPI.csproj", "{E3BC2EEC-F111-4903-9342-6F7EFDC4E792}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp21.Services.OrderAPI", "WebApp21.Services.OrderAPI\WebApp21.Services.OrderAPI.csproj", "{C92E4AFA-7B06-4B8F-800B-1927A0127509}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{E3BC2EEC-F111-4903-9342-6F7EFDC4E792}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E3BC2EEC-F111-4903-9342-6F7EFDC4E792}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E3BC2EEC-F111-4903-9342-6F7EFDC4E792}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C92E4AFA-7B06-4B8F-800B-1927A0127509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C92E4AFA-7B06-4B8F-800B-1927A0127509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C92E4AFA-7B06-4B8F-800B-1927A0127509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C92E4AFA-7B06-4B8F-800B-1927A0127509}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +77,7 @@ Global
 		{3D58B08B-CD14-4E67-8B08-F4FB0C5DDD04} = {45F75925-DAA0-4F4A-813C-AE37DD6C0353}
 		{F3AAA6BB-A6B0-4C4C-8815-3FA13BF93D47} = {1D61B78A-7A58-4990-A1CE-32D36022C6A8}
 		{E3BC2EEC-F111-4903-9342-6F7EFDC4E792} = {45F75925-DAA0-4F4A-813C-AE37DD6C0353}
+		{C92E4AFA-7B06-4B8F-800B-1927A0127509} = {45F75925-DAA0-4F4A-813C-AE37DD6C0353}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E5AC6A0A-94A8-496B-AF34-FA3325E9A56D}
