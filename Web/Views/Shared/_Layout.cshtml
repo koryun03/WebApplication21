@@ -59,6 +59,10 @@
                         }
                         else
                         {
+                            <li class="nav-item">
+                                @* <a class="nav-link" asp-area="" asp-controller="Auth" asp-action="GetUserId">UserProfile</a> *@
+                                <a class="nav-link" asp-area="" asp-controller="Auth" asp-action="UserProfile">UserProfile</a>
+                            </li>
                               <li class="nav-item">
                                 <a class="nav-link" href="#">@User.Identity.Name</a>
                             </li>

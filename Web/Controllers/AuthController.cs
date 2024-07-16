@@ -58,7 +58,7 @@ namespace Web.Controllers
                 new SelectListItem{Text=SD.RoleCustomer,Value=SD.RoleCustomer},
             };
 
-            ViewBag.RoleList = roleList;
+            ViewBag.RoleList = roleList; //erevi petq chi
             return View();
         }
 
@@ -131,5 +131,26 @@ namespace Web.Controllers
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
 
         }
+
+        [HttpGet]
+        public async Task<IActionResult> GetUserId()
+        {
+            //  var email = HttpContext.User.FindFirst(ClaimTypes.Name)?.Value;
+            var a = await _authService.GetUserIdAsync(User.Identity.Name);
+            return Ok(a);
+            //return Ok(a.Result);
+        }
+
+        [HttpGet]
+        public IActionResult UserProfile()
+        {
+            return View();
+        }
+
+        //[HttpGet]
+        //public async Task<IActionResult> UserProfile()
+        //{
+        //    return View();
+        //}
     }
 }

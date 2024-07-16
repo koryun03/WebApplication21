@@ -20,19 +20,6 @@ namespace WebApp21.Services.AuthAPI.Controllers
             _response = new();
         }
 
-        //[HttpPost("register")]
-        //public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
-        //{
-        //    var errorMessage = await _authService.Register(model);
-        //    if (!string.IsNullOrEmpty(errorMessage))
-        //    {
-        //        _response.IsSuccess = false;
-        //        _response.Message = errorMessage;
-        //        return BadRequest(_response);
-        //    }
-        //    //return Ok();
-        //    return Ok(_response);
-        //}
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegistrationRequestDto model)
@@ -78,5 +65,21 @@ namespace WebApp21.Services.AuthAPI.Controllers
             }
             return Ok(_response);
         }
+
+        [HttpGet("GetUserId")]
+        public async Task<IActionResult> GetUserId(string email)
+        {
+            var userId = await _authService.GetUserId(email);
+            if (userId == null)
+            {
+                _response.IsSuccess = false;
+                _response.Message = "Error encountered";
+                return BadRequest(_response);
+            }
+            _response.Result = userId;
+            return Ok(_response);
+        }
+
     }
+
 }

@@ -25,7 +25,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp21.MessageBus", "Mess
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp21.Services.EmailAPI", "Services.EmailAPI\WebApp21.Services.EmailAPI.csproj", "{E3BC2EEC-F111-4903-9342-6F7EFDC4E792}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp21.Services.OrderAPI", "WebApp21.Services.OrderAPI\WebApp21.Services.OrderAPI.csproj", "{C92E4AFA-7B06-4B8F-800B-1927A0127509}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp21.Services.OrderAPI", "WebApp21.Services.OrderAPI\WebApp21.Services.OrderAPI.csproj", "{C92E4AFA-7B06-4B8F-800B-1927A0127509}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

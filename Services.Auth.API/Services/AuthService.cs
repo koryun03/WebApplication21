@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using WebApp21.Services.AuthAPI.Data;
 using WebApp21.Services.AuthAPI.Models;
 using WebApp21.Services.AuthAPI.Models.Dto;
@@ -112,6 +113,12 @@ namespace WebApp21.Services.AuthAPI.Services
             }
             return false;
 
+        }
+
+        public async Task<string> GetUserId(string email)
+        {
+            var user = await _context.ApplicationUsers.FirstOrDefaultAsync(u => u.Email.ToLower() == email.ToLower());
+            return user.Id;
         }
 
     }

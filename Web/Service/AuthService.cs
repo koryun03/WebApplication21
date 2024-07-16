@@ -24,13 +24,6 @@ namespace Web.Service
 
         public async Task<ResponseDto?> LoginAsync(LoginRequestDto loginRequestDto)
         {
-            //return await _baseService.SendAsync(new RequestDto()
-            //{
-            //    ApiType = SD.ApiType.POST,
-            //    Data = loginRequestDto,
-            //    Url = SD.AuthAPIBase + "/api/auth/login"
-            //});
-
             return await _baseService.SendAsync(new RequestDto()
             {
                 ApiType = SD.ApiType.POST,
@@ -51,5 +44,17 @@ namespace Web.Service
 
         }
 
+        public async Task<ResponseDto?> GetUserIdAsync(string email)
+        {
+            return await _baseService.SendAsync(new RequestDto()
+            {
+                ApiType = SD.ApiType.GET,
+                Data = email,
+                //Url = SD.AuthAPIBase + "/api/auth/GetUserId"
+                Url = SD.AuthAPIBase + $"/api/auth/GetUserId?email={email}"
+            }, withBearer: false);
+        }
+
     }
+
 }
